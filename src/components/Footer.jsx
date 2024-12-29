@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="footer bg-[#1F2937] text-neutral-content p-10 flex items-center justify-around">
         <div className="text-center bg-[#1F2937] ">
           <p>
-            <p className="footer-title">CONTACT US</p> 
+            <span className="footer-title">CONTACT US</span> 
             123 ABS Street, Uni 21, Bangladesh <br /> +88 123456789 <br />
             Mon - Fri: 08:00 - 22:00 <br /> Sat - Sun: 10:00 - 23:00
           </p>
