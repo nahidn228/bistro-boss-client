@@ -5,6 +5,7 @@ import ChefRecommends from "../components/ChefRecommends";
 import Menu from "../components/Menu";
 import PopularMenu from "../components/PopularMenu";
 import SwiperImg from "../components/SwiperImg";
+import Testimonials from "../components/Testimonials";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <Call></Call>
       <ChefRecommends></ChefRecommends>
       <Menu></Menu>
+      <Testimonials></Testimonials>
     </div>
   );
 };
