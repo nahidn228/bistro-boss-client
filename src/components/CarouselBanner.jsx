@@ -9,8 +9,17 @@ import banner6 from "../../src/assets/home/06.png";
 
 const CarouselBanner = () => {
   return (
-    <div>
-      <Carousel>
+    <div className="carousel-container">
+      <Carousel
+        autoPlay
+        interval={3000}
+        swipeable={true}
+        transitionTime={1000}
+        showThumbs={true}
+        thumbWidth={80}
+        infiniteLoop
+        autoFocus
+      >
         <div>
           <img src={banner1} />
           {/* <p className="legend">Legend 1</p> */}

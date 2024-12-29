@@ -4,25 +4,25 @@ const Navbar = () => {
   const navItem = (
     <>
       <li>
-        <NavLink>Home</NavLink>
+        <NavLink className="btn btn-ghost">Home</NavLink>
       </li>
 
       <li>
-        <NavLink>Contact US</NavLink>
+        <NavLink className="btn btn-ghost">Contact US</NavLink>
       </li>
       <li>
-        <NavLink>Dashboard</NavLink>
+        <NavLink className="btn btn-ghost">Dashboard</NavLink>
       </li>
       <li>
-        <NavLink>Our menu</NavLink>
+        <NavLink className="btn btn-ghost">Our menu</NavLink>
       </li>
       <li>
-        <NavLink>our shop</NavLink>
+        <NavLink className="btn btn-ghost">our shop</NavLink>
       </li>
     </>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar fixed z-10 bg-black bg-opacity-55 max-w-screen-xl mx-auto text-white">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
