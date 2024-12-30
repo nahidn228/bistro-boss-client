@@ -6,13 +6,13 @@ const MenuItemCard = ({ item }) => {
   return (
     <div className="flex gap-6 text-lg">
       <img
-        className="w-28 object-cover rounded-e-full rounded-b-full"
+        className="h-20 object-cover rounded-e-3xl rounded-b-3xl"
         src={image}
         alt=""
       />
       <div>
         <p className="flex justify-between font-semibold uppercase">
-          {name} --------- <span className="text-[#BB8506] ">$ {price} </span>
+          {name} ------- <span className="text-[#BB8506] ">$ {price} </span>
         </p>
 
         <p className="text-gray-600">{recipe}</p>
