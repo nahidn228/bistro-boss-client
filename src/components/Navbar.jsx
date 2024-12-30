@@ -4,7 +4,9 @@ const Navbar = () => {
   const navItem = (
     <>
       <li>
-        <NavLink to="/" className="btn btn-ghost">Home</NavLink>
+        <NavLink to="/" className="btn btn-ghost">
+          Home
+        </NavLink>
       </li>
 
       <li>
@@ -19,7 +21,9 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink className="btn btn-ghost">our shop</NavLink>
+        <NavLink to="/ourShop" className="btn btn-ghost">
+          our shop
+        </NavLink>
       </li>
     </>
   );
