@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import shopBanner from "../assets/shop/shopBanner.jpg";
+import FoodCard from "../components/FoodCard";
 import useMenu from "../hooks/useMenu";
 import Cover from "../Shared/Cover";
+import { Helmet } from "react-helmet-async";
 
 const OurShop = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -17,6 +18,9 @@ const OurShop = () => {
   const pizza = menu.filter((item) => item.category === "pizza");
   return (
     <div>
+         <Helmet>
+                <title>Our Shop - Bistro Boss Restaurant</title>
+              </Helmet>
       <Cover
         img={shopBanner}
         title={"OUR SHOP"}
@@ -34,130 +38,45 @@ const OurShop = () => {
 
           {/* Salad item */}
           <TabPanel>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 my-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-8">
               {salad.map((item) => (
-                <div key={item._id} className="card bg-base-100  shadow-xl">
-                  <figure className="">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="rounded-xl"
-                    />
-                  </figure>
-                  <div className="card-body items-center text-center">
-                    <h2 className="card-title">{item.name}</h2>
-                    <p>{item.recipe}</p>
-                    <div className="card-actions">
-                      <Link className="btn btn-outline border-0 border-b-4 uppercase">
-                        add to cart
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                <FoodCard key={item._id} item={item}></FoodCard>
               ))}
             </div>
           </TabPanel>
 
           {/* PIZZA item */}
           <TabPanel>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 my-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-8">
               {pizza.map((item) => (
-                <div key={item._id} className="card bg-base-100  shadow-xl">
-                  <figure className="">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="rounded-xl"
-                    />
-                  </figure>
-                  <div className="card-body items-center text-center">
-                    <h2 className="card-title">{item.name}</h2>
-                    <p>{item.recipe}</p>
-                    <div className="card-actions">
-                      <Link className="btn btn-outline border-0 border-b-4 uppercase">
-                        add to cart
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                <FoodCard key={item._id} item={item}></FoodCard>
               ))}
             </div>
           </TabPanel>
 
           {/* DESSERT item */}
           <TabPanel>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 my-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-8">
               {dessert.map((item) => (
-                <div key={item._id} className="card bg-base-100  shadow-xl">
-                  <figure className="">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="rounded-xl"
-                    />
-                  </figure>
-                  <div className="card-body items-center text-center">
-                    <h2 className="card-title">{item.name}</h2>
-                    <p>{item.recipe}</p>
-                    <div className="card-actions">
-                      <Link className="btn btn-outline border-0 border-b-4 uppercase">
-                        add to cart
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                <FoodCard key={item._id} item={item}></FoodCard>
               ))}
             </div>
           </TabPanel>
 
           {/* Soup item */}
           <TabPanel>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 my-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-8">
               {soup.map((item) => (
-                <div key={item._id} className="card bg-base-100  shadow-xl">
-                  <figure className="">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="rounded-xl"
-                    />
-                  </figure>
-                  <div className="card-body items-center text-center">
-                    <h2 className="card-title">{item.name}</h2>
-                    <p>{item.recipe}</p>
-                    <div className="card-actions">
-                      <Link className="btn btn-outline border-0 border-b-4 uppercase">
-                        add to cart
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                <FoodCard key={item._id} item={item}></FoodCard>
               ))}
             </div>
           </TabPanel>
 
           {/* drinks item */}
           <TabPanel>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 my-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-8">
               {drinks.map((item) => (
-                <div key={item._id} className="card bg-base-100  shadow-xl">
-                  <figure className="">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="rounded-xl"
-                    />
-                  </figure>
-                  <div className="card-body items-center text-center">
-                    <h2 className="card-title">{item.name}</h2>
-                    <p>{item.recipe}</p>
-                    <div className="card-actions">
-                      <Link className="btn btn-outline border-0 border-b-4 uppercase">
-                        add to cart
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                <FoodCard key={item._id} item={item}></FoodCard>
               ))}
             </div>
           </TabPanel>

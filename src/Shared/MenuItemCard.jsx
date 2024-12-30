@@ -4,7 +4,7 @@
 const MenuItemCard = ({ item }) => {
   const { name, recipe, image, price } = item;
   return (
-    <div className="flex gap-6 text-lg">
+    <div className="flex justify-center items-center gap-6 text-lg">
       <img
         className="h-20 object-cover rounded-e-3xl rounded-b-3xl"
         src={image}
