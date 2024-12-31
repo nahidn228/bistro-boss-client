@@ -9,7 +9,7 @@ import {
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
-  const { handleGoogleLogin, signInUser } = useContext(AuthContext);
+  const { signInUser } = useContext(AuthContext);
 
   const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
