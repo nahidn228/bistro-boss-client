@@ -1,4 +1,13 @@
+import { useEffect, useRef, useState } from "react";
+import {
+  LoadCanvasTemplate,
+  loadCaptchaEnginge,
+  validateCaptcha,
+} from "react-simple-captcha";
+
 const Login = () => {
+  const captchaRef = useRef(null);
+  const [disabled, setDisabled] = useState(true);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -6,6 +15,20 @@ const Login = () => {
     const password = form.password.value;
     console.log({ email, password });
   };
+  const handleValidateCaptcha = () => {
+    const user_captcha_value = captchaRef.current.value;
+    if (validateCaptcha(user_captcha_value) == true) {
+      alert("Captcha Matched");
+      setDisabled(false);
+    } else {
+      alert("Captcha Does Not Match");
+      setDisabled(true);
+    }
+  };
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -48,8 +71,33 @@ const Login = () => {
                 </a>
               </label>
             </div>
+            <div className="form-control">
+              <label className="label">
+                <LoadCanvasTemplate />
+              </label>
+              <input
+                type="text"
+                name="captcha"
+                ref={captchaRef}
+                placeholder="Type the Captcha"
+                className="input input-bordered"
+                required
+              />
+              <button
+                type="button"
+                onClick={handleValidateCaptcha}
+                className="btn btn-outline btn-xs mt-2"
+              >
+                Validate
+              </button>
+            </div>
             <div className="form-control mt-6">
-              <input className="btn btn-primary" type="submit" value="Login" />
+              <input
+                className="btn btn-primary"
+                disabled={disabled}
+                type="submit"
+                value="Login"
+              />
             </div>
           </form>
         </div>
