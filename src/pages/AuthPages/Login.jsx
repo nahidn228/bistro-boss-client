@@ -1,4 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
   LoadCanvasTemplate,
@@ -45,6 +46,9 @@ const Login = () => {
 
   return (
     <div className="hero bg-base-200 min-h-screen">
+      <Helmet>
+        <title>Login - Bistro Boss Restaurant</title>
+      </Helmet>
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left md:w-1/2">
           <h1 className="text-5xl font-bold">Login now!</h1>

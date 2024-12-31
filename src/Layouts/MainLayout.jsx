@@ -11,7 +11,7 @@ const MainLayout = () => {
   return (
     <div>
       {hideNavFooter || <Navbar></Navbar>}
-      {location.pathname !== "/login" ? <Navbar></Navbar> : ""}
+      {/* {location.pathname !== "/login" ? <Navbar></Navbar> : ""} */}
       <Outlet></Outlet>
       {hideNavFooter || <Footer></Footer>}
       {/* {location.pathname !== "/login" ? <Footer></Footer> : ""} */}
