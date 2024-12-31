@@ -5,13 +5,16 @@ import Navbar from "../components/Navbar";
 const MainLayout = () => {
   const location = useLocation();
   console.log(location);
-  // const hideNavFooter = location.pathname.includes("/login");
+  const hideNavFooter =
+    location.pathname.includes("/login") ||
+    location.pathname.includes("/register");
   return (
     <div>
-      {/* {hideNavFooter || <Navbar></Navbar>} */}
+      {hideNavFooter || <Navbar></Navbar>}
       {location.pathname !== "/login" ? <Navbar></Navbar> : ""}
       <Outlet></Outlet>
-      {location.pathname !== "/login" ? <Footer></Footer> : ""}
+      {hideNavFooter || <Footer></Footer>}
+      {/* {location.pathname !== "/login" ? <Footer></Footer> : ""} */}
     </div>
   );
 };
