@@ -81,9 +81,16 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <button onClick={handleLogOut} className="btn  btn-error text-white">
-            Logout
-          </button>
+          <>
+            <span className="text-sm font-semibold mr-2">{user?.displayName}</span>
+
+            <button
+              onClick={handleLogOut}
+              className="btn  btn-error text-white"
+            >
+              Logout
+            </button>
+          </>
         ) : (
           <NavLink to="/login" className="btn btn-outline btn-accent">
             Login
