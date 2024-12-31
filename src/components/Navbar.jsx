@@ -8,13 +8,6 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-
-      <li>
-        <NavLink className="btn btn-ghost">Contact US</NavLink>
-      </li>
-      <li>
-        <NavLink className="btn btn-ghost">Dashboard</NavLink>
-      </li>
       <li>
         <NavLink to="/menu" className="btn btn-ghost">
           Our menu
@@ -24,6 +17,12 @@ const Navbar = () => {
         <NavLink to="/ourShop" className="btn btn-ghost">
           our shop
         </NavLink>
+      </li>
+      <li>
+        <NavLink to="/login" className="btn btn-ghost">Login</NavLink>
+      </li>
+      <li>
+        <NavLink to="/register" className="btn btn-ghost">Register</NavLink>
       </li>
     </>
   );
