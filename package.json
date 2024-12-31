@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@smastrom/react-rating": "^1.5.0",
+    "animate.css": "^4.1.1",
     "firebase": "^11.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -23,6 +24,7 @@
     "react-simple-captcha": "^9.3.1",
     "react-tabs": "^6.1.0",
     "simple-parallax-js": "^6.0.1",
+    "sweetalert2": "^11.15.3",
     "swiper": "^11.1.15"
   },
   "devDependencies": {
