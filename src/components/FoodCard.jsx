@@ -2,6 +2,9 @@
 import { Link } from "react-router-dom";
 
 const FoodCard = ({ item }) => {
+  const handleAddToCart = (food) => {
+    console.log(food);
+  };
   return (
     <div className="card bg-base-100  shadow-xl">
       <figure className="">
@@ -14,7 +17,10 @@ const FoodCard = ({ item }) => {
         <h2 className="card-title">{item?.name}</h2>
         <p>{item?.recipe}</p>
         <div className="card-actions flex items-center justify-center">
-          <Link className="btn btn-outline bg-slate-100 border-0 border-b-4 border-orange-400 uppercase ">
+          <Link
+            onClick={() => handleAddToCart(item)}
+            className="btn btn-outline bg-slate-100 border-0 border-b-4 border-orange-400 uppercase "
+          >
             add to cart
           </Link>
         </div>

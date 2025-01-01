@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { FaCartPlus } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
 
@@ -38,6 +39,12 @@ const Navbar = () => {
       <li>
         <NavLink to="/register" className="btn btn-ghost">
           Register
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/register" className="btn btn-ghost">
+          <FaCartPlus />
+          <div className="badge badge-secondary">+0</div>
         </NavLink>
       </li>
     </>
@@ -82,7 +89,9 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            <span className="text-sm font-semibold mr-2">{user?.displayName}</span>
+            <span className="text-sm font-semibold mr-2">
+              {user?.displayName}
+            </span>
 
             <button
               onClick={handleLogOut}
