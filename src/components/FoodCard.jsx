@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
-import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const FoodCard = ({ item }) => {
   const { user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+
+  const axiosSecure = useAxiosSecure();
+
   const handleAddToCart = (food) => {
     console.log(food, user?.email);
 
@@ -22,7 +25,7 @@ const FoodCard = ({ item }) => {
         price: item.price,
       };
 
-      axios.post("http://localhost:5000/carts", cartItem).then((res) => {
+      axiosSecure.post("/carts", cartItem).then((res) => {
         console.log(res.data);
         if (res.data.insertedId) {
           Swal.fire({
