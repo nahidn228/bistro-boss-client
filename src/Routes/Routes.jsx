@@ -5,7 +5,6 @@ import Register from "../pages/AuthPages/Register";
 import Home from "../pages/Home";
 import Menu from "../pages/MenuPage";
 import OurShop from "../pages/OurShop";
-import PrivateRoute from "./privateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -22,11 +21,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/ourShop",
-        element: (
-          <PrivateRoute>
-            <OurShop></OurShop>
-          </PrivateRoute>
-        ),
+        element: <OurShop></OurShop>,
       },
       {
         path: "/login",

@@ -1,9 +1,31 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
 
 const FoodCard = ({ item }) => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const handleAddToCart = (food) => {
-    console.log(food);
+    console.log(food, user?.email);
+
+    if (user && user.email) {
+      //
+    } else {
+      Swal.fire({
+        title: "You are not logged in !",
+        text: "Please login to Add to the cart!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Login!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    }
   };
   return (
     <div className="card bg-base-100  shadow-xl">
