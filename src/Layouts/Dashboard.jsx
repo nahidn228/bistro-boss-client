@@ -4,7 +4,9 @@ import { MdOutlineRestaurantMenu, MdRateReview } from "react-icons/md";
 import { RiHome7Fill } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
 import { NavLink, Outlet } from "react-router-dom";
+import useCart from "../hooks/useCart";
 const Dashboard = () => {
+  const [cart] = useCart();
   return (
     <div className="flex">
       <div className="w-64 min-h-screen bg-[#D1A054]">
@@ -22,7 +24,7 @@ const Dashboard = () => {
           </li>
           <li>
             <NavLink to="/dashboard/cart">
-              <FaCartPlus /> My Cart
+              <FaCartPlus /> My Cart ({cart.length})
             </NavLink>
           </li>
           <li>
@@ -42,7 +44,7 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/menu">
+            <NavLink to="/ourShop">
               <MdOutlineRestaurantMenu /> Menu
             </NavLink>
           </li>

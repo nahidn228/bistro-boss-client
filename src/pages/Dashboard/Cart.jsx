@@ -1,8 +1,39 @@
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
 
 const Cart = () => {
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
+  const axiosSecure = useAxiosSecure();
   const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+
+  const handleDelete = (id) => {
+    console.log(id);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/carts/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
   return (
     <div>
       {/* Header */}
@@ -16,7 +47,7 @@ const Cart = () => {
 
       {/* Table */}
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto my-8">
         <table className="table">
           {/* head */}
           <thead>
@@ -36,28 +67,26 @@ const Cart = () => {
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src={item.image}
-                          alt="Avatar Tailwind CSS Component"
-                        />
+                        <img src={item.image} alt={item.name} />
                       </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">Hart Hagerty</div>
-                      <div className="text-sm opacity-50">United States</div>
                     </div>
                   </div>
                 </td>
                 <td>
-                  Zemlak, Daniel and Leannon
+                  {item.name}
                   <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Desktop Support Technician
-                  </span>
+                  {/* <span className="badge badge-ghost badge-sm">
+                  {item.category}
+                  </span> */}
                 </td>
-                <td>Purple</td>
+                <td> ${item.price} </td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
+                  <button
+                    onClick={() => handleDelete(item._id)}
+                    className="btn btn-outline btn-error "
+                  >
+                    <RiDeleteBin6Fill />
+                  </button>
                 </th>
               </tr>
             ))}
