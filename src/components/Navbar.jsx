@@ -44,7 +44,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/register" className="btn btn-ghost">
+        <NavLink to="/dashboard/cart" className="btn btn-ghost">
           <FaCartPlus />
           <div className="badge badge-secondary">+{cart.length}</div>
         </NavLink>
