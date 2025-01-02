@@ -44,7 +44,7 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/ourShop">
+            <NavLink to="/order">
               <MdOutlineRestaurantMenu /> Menu
             </NavLink>
           </li>

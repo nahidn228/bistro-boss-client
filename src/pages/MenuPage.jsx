@@ -1,13 +1,15 @@
 import { Helmet } from "react-helmet-async";
-import Cover from "../Shared/Cover";
-import MenuImg from "../assets/menu/banner3.jpg";
-import drinksImg from "../assets/menu/banner3.jpg";
+import {
+  default as drinksImg,
+  default as MenuImg,
+} from "../assets/menu/banner3.jpg";
 import dessertImg from "../assets/menu/dessert-bg.jpeg";
 import pizzaImg from "../assets/menu/pizza-bg.jpg";
 import saladImg from "../assets/menu/salad-bg.jpg";
 import soupImg from "../assets/menu/soup-bg.jpg";
 import MenuCategory from "../components/MenuComp/MenuCategory";
 import useMenu from "../hooks/useMenu";
+import Cover from "../Shared/Cover";
 import SectionTitle from "../Shared/SectionTitle";
 
 const MenuPage = () => {
@@ -30,13 +32,14 @@ const MenuPage = () => {
         title={"Our menu"}
         subTitle={"Would you like to try a dish?"}
       ></Cover>
-       <SectionTitle
+      <SectionTitle
         subHeading={"---Don't miss---"}
         heading={"TODAY'S OFFER"}
       ></SectionTitle>
       {/* Offered category  */}
       <MenuCategory
         items={offered}
+        title="offered"
         btnText={"ORDER YOUR FAVOURITE FOOD"}
       ></MenuCategory>
 
@@ -50,6 +53,7 @@ const MenuPage = () => {
       ></Cover>
       <MenuCategory
         items={dessert}
+        title="dessert"
         btnText={"ORDER YOUR FAVOURITE FOOD"}
       ></MenuCategory>
 
@@ -63,6 +67,7 @@ const MenuPage = () => {
       ></Cover>
       <MenuCategory
         items={pizza}
+        title="pizza"
         btnText={"ORDER YOUR FAVOURITE FOOD"}
       ></MenuCategory>
 
@@ -76,6 +81,7 @@ const MenuPage = () => {
       ></Cover>
       <MenuCategory
         items={salad}
+        title="salad"
         btnText={"ORDER YOUR FAVOURITE FOOD"}
       ></MenuCategory>
 
@@ -89,6 +95,7 @@ const MenuPage = () => {
       ></Cover>
       <MenuCategory
         items={soup}
+        title="soup"
         btnText={"ORDER YOUR FAVOURITE FOOD"}
       ></MenuCategory>
 
@@ -102,12 +109,9 @@ const MenuPage = () => {
       ></Cover>
       <MenuCategory
         items={drinks}
+        title="drinks"
         btnText={"ORDER YOUR FAVOURITE FOOD"}
       ></MenuCategory>
-
-
-
-
     </div>
   );
 };

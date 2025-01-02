@@ -1,15 +1,24 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import shopBanner from "../assets/shop/shopBanner.jpg";
 import FoodCard from "../components/FoodCard";
 import useMenu from "../hooks/useMenu";
 import Cover from "../Shared/Cover";
-import { Helmet } from "react-helmet-async";
 
-const OurShop = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+const Order = () => {
+  const categories = ["salad", "pizza", "dessert", "soup", "drinks"];
+  const { category } = useParams();
+
+  const initialIndex = categories.indexOf(category);
+
+  // const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(initialIndex);
   const [menu] = useMenu();
+
+  
 
   const dessert = menu.filter((item) => item.category === "dessert");
   const salad = menu.filter((item) => item.category === "salad");
@@ -18,12 +27,12 @@ const OurShop = () => {
   const pizza = menu.filter((item) => item.category === "pizza");
   return (
     <div>
-         <Helmet>
-                <title>Our Shop - Bistro Boss Restaurant</title>
-              </Helmet>
+      <Helmet>
+        <title>Order - Bistro Boss Restaurant</title>
+      </Helmet>
       <Cover
         img={shopBanner}
-        title={"OUR SHOP"}
+        title={"Order food"}
         subTitle={"Would you like to try a dish?"}
       ></Cover>
       <div className="my-10 w-11/12 md:max-w-screen-lg mx-auto">
@@ -86,4 +95,4 @@ const OurShop = () => {
   );
 };
 
-export default OurShop;
+export default Order;

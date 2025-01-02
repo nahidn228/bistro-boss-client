@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 
 import MenuItemCard from "../../Shared/MenuItemCard";
 
-const MenuCategory = ({ items, btnText }) => {
-
+const MenuCategory = ({ items, btnText, title }) => {
   return (
     <section className="w-10/12 mx-auto my-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-10">
@@ -14,7 +13,7 @@ const MenuCategory = ({ items, btnText }) => {
       </div>
       <div className="flex justify-center">
         <Link
-          to={`/ourShop`}
+          to={`/order/${title}`}
           className="btn btn-outline border-0 border-b-4 "
         >
           {btnText}
