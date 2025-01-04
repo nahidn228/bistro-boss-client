@@ -7,6 +7,7 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import Swal from "sweetalert2";
+import GoogleLogin from "../../components/scocialLogin/GoogleLogin";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
@@ -141,7 +142,11 @@ const Login = () => {
               />
             </div>
           </form>
-          <p>
+          <div className="divider"></div>
+          <div className="flex items-center justify-center">
+            <GoogleLogin />
+          </div>
+          <p className="p-4">
             <small>
               New to Here ? <Link to="/register">Create a new Account</Link>
             </small>

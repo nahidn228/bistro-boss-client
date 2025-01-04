@@ -29,7 +29,7 @@ const AuthProviders = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
   const updateUserProfile = (name, photo) => {
-   return updateProfile(auth.currentUser, {
+    return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
     });
@@ -39,9 +39,9 @@ const AuthProviders = ({ children }) => {
     return signOut(auth);
   };
 
-  const handleGoogleLogin = () => {
+  const googleLogin = () => {
     setLoading(true);
-    signInWithPopup(auth, googleProvider);
+    return signInWithPopup(auth, googleProvider);
   };
 
   useEffect(() => {
@@ -63,8 +63,8 @@ const AuthProviders = ({ children }) => {
     createUser,
     signInUser,
     logOutUser,
-    handleGoogleLogin,
-    updateUserProfile
+    googleLogin,
+    updateUserProfile,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

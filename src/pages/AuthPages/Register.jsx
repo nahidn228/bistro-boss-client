@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import GoogleLogin from "../../components/scocialLogin/GoogleLogin";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { AuthContext } from "../../providers/AuthProviders";
 
@@ -183,7 +184,11 @@ const Register = () => {
               />
             </div>
           </form>
-          <p>
+          <div className="divider"></div>
+          <div className="flex items-center justify-center">
+            <GoogleLogin />
+          </div>
+          <p className="p-4">
             <small>
               <Link to="/Login">Already have an account</Link>
             </small>
