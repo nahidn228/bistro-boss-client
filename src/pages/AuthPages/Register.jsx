@@ -3,9 +3,11 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const {
@@ -24,16 +26,28 @@ const Register = () => {
         // alert("Registration successful", user);
         updateUserProfile(data.name, data.photoURL)
           .then(() => {
-            console.log("user profile info update");
-            reset();
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "user created successfully",
-              showConfirmButton: false,
-              timer: 1500,
+            // console.log("user profile info update");
+
+            //create user entry in Database
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+              photo: data.photoURL,
+            };
+            axiosPublic.post("/users", userInfo).then((res) => {
+              console.log("user Added to the DB ==>", res.data);
+              if (res.data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "user created successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
             });
-            navigate("/");
           })
           .catch((error) => {
             alert(error);
