@@ -9,12 +9,13 @@ import {
 import { RiHome7Fill } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 import useCart from "../hooks/useCart";
 const Dashboard = () => {
   const [cart] = useCart();
 
   // TODO: get isAdmin value from the database
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   return (
     <div className="flex">
