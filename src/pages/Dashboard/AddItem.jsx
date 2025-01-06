@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import { MdRestaurant } from "react-icons/md";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import SectionTitle from "../../Shared/SectionTitle";
 import useAxiosPublic from "./../../hooks/useAxiosPublic";
 
@@ -7,8 +9,9 @@ const image_hosting_key = import.meta.env.VITE_IMGBB_API_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddItem = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -19,7 +22,32 @@ const AddItem = () => {
         "content-type": "multipart/form-data",
       },
     });
-    console.log(res.data);
+    console.log("with image url", res.data);
+
+    if (res.data.success) {
+      // now send the menu item data to the server with the image url
+      const menuItem = {
+        name: data.name,
+        category: data.category,
+        price: parseFloat(data.price),
+        recipe: data.recipe,
+        image: res.data.data.display_url,
+      };
+
+      const menuRes = await axiosSecure.post("/menu", menuItem);
+      console.log(menuRes.data);
+      if (menuRes.data.insertedId) {
+        reset();
+        // show success popup
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${data.name} is added to the menu.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    }
   };
   return (
     <div>
@@ -36,7 +64,7 @@ const AddItem = () => {
               <span className="label-text">Recipe name*</span>
             </div>
             <input
-              {...register("name", { required: true, maxLength: 20 })}
+              {...register("name", { required: true, maxLength: 50 })}
               type="text"
               placeholder="Recipe name"
               className="input input-bordered w-full "
