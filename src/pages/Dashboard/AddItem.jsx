@@ -1,11 +1,25 @@
 import { useForm } from "react-hook-form";
 import { MdRestaurant } from "react-icons/md";
 import SectionTitle from "../../Shared/SectionTitle";
+import useAxiosPublic from "./../../hooks/useAxiosPublic";
+
+const image_hosting_key = import.meta.env.VITE_IMGBB_API_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddItem = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
+  const axiosPublic = useAxiosPublic();
+
+  const onSubmit = async (data) => {
     console.log(data);
+    //image upload to imgbb and then get url
+    const imageFile = { image: data.image[0] };
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    console.log(res.data);
   };
   return (
     <div>
@@ -35,10 +49,13 @@ const AddItem = () => {
                 <span className="label-text">Category*</span>
               </div>
               <select
+                defaultValue="default"
                 {...register("category", { required: true })}
                 className="select select-bordered w-full "
               >
-               
+                <option disabled value="default">
+                  Select a category
+                </option>
 
                 <option value="salad">SALAD</option>
                 <option value="pizza">PIZZA</option>
@@ -67,7 +84,7 @@ const AddItem = () => {
               <span className="label-text">Recipe Details*</span>
             </div>
             <textarea
-              {...register("recipe", { required: true})}
+              {...register("recipe", { required: true })}
               className="textarea textarea-bordered h-24"
               placeholder="Recipe Details"
             ></textarea>
