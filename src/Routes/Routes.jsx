@@ -3,14 +3,15 @@ import Dashboard from "../Layouts/Dashboard";
 import MainLayout from "../Layouts/MainLayout";
 import Login from "../pages/AuthPages/Login";
 import Register from "../pages/AuthPages/Register";
+import AddItem from "../pages/Dashboard/AddItem";
 import AllUsers from "../pages/Dashboard/AllUsers";
 import Cart from "../pages/Dashboard/Cart";
+import ManageItems from "../pages/Dashboard/ManageItems";
 import Home from "../pages/Home";
 import Menu from "../pages/MenuPage";
 import Order from "../pages/Order";
-import PrivateRoute from "./privateRoute/PrivateRoute";
-import AddItem from "../pages/Dashboard/AddItem";
 import AdminRoute from "./AdminRoute";
+import PrivateRoute from "./privateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -53,11 +54,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "all-users",
-        element: <AdminRoute><AllUsers /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "add-item",
-        element: <AdminRoute><AddItem /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <AddItem />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-item",
+        element: (
+          <AdminRoute>
+            <ManageItems />
+          </AdminRoute>
+        ),
       },
     ],
   },
