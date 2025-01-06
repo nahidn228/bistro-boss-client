@@ -9,6 +9,8 @@ import Home from "../pages/Home";
 import Menu from "../pages/MenuPage";
 import Order from "../pages/Order";
 import PrivateRoute from "./privateRoute/PrivateRoute";
+import AddItem from "../pages/Dashboard/AddItem";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -51,7 +53,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "all-users",
-        element: <AllUsers />,
+        element: <AdminRoute><AllUsers /></AdminRoute>,
+      },
+      {
+        path: "add-item",
+        element: <AdminRoute><AddItem /></AdminRoute>,
       },
     ],
   },
