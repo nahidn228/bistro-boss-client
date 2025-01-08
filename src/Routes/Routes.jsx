@@ -7,7 +7,7 @@ import AddItem from "../pages/Dashboard/AddItem";
 import AllUsers from "../pages/Dashboard/AllUsers";
 import Cart from "../pages/Dashboard/Cart";
 import ManageItems from "../pages/Dashboard/ManageItems";
-import Payment from "../pages/Dashboard/Payment";
+import Payment from "../pages/Dashboard/Payment/Payment";
 import UpdateItem from "../pages/Dashboard/UpdateItem";
 import Home from "../pages/Home";
 import Menu from "../pages/MenuPage";
