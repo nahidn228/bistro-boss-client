@@ -3,10 +3,12 @@ import { FaCartPlus } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import useCart from "../hooks/useCart";
 import { AuthContext } from "../providers/AuthProviders";
+import useAdmin from "./../hooks/useAdmin";
 
 const Navbar = () => {
-  const [cart] = useCart();
   const { user, logOutUser } = useContext(AuthContext);
+  const [cart] = useCart();
+  const [isAdmin] = useAdmin();
   const handleLogOut = () => {
     logOutUser()
       .then(() => {
@@ -30,9 +32,23 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink to="/order/salad" className="btn btn-ghost">
-          our Food
+          Order Food
         </NavLink>
       </li>
+      {user && isAdmin && (
+        <li>
+          <NavLink to="/dashboard/adminHome" className="btn btn-ghost">
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+      {user && !isAdmin && (
+        <li>
+          <NavLink to="/dashboard/userHome" className="btn btn-ghost">
+            Dashboard
+          </NavLink>
+        </li>
+      )}
       <li>
         <NavLink to="/login" className="btn btn-ghost">
           Login

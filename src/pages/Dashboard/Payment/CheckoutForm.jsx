@@ -11,17 +11,19 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const axiosSecure = useAxiosSecure();
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const { user } = useAuth();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
   useEffect(() => {
-    axiosSecure
-      .post("/create-payment-intent", { price: totalPrice })
-      .then((res) => {
-        console.log(res.data.client_secret);
-        setClientSecret(res.data.client_secret);
-      });
+    if (totalPrice > 0) {
+      axiosSecure
+        .post("/create-payment-intent", { price: totalPrice })
+        .then((res) => {
+          console.log(res.data.client_secret);
+          setClientSecret(res.data.client_secret);
+        });
+    }
   }, [axiosSecure, totalPrice]);
 
   const handleSubmit = async (e) => {
@@ -80,8 +82,9 @@ const CheckoutForm = () => {
           menuItemIds: cart.map((item) => item.menuId),
           status: "pending",
         };
-        const res = await axiosSecure("/payments", payment);
-        console.log(res.data);
+        const res = await axiosSecure.post("/payments", payment);
+        console.log('Payment saved',res.data);
+        refetch();
       }
     }
   };
@@ -111,6 +114,7 @@ const CheckoutForm = () => {
         Pay
       </button>
       {error ? <p className="text-red-500"> {error} </p> : ""}
+      {transactionId ? <p className="text-blue-500"> {transactionId} </p> : ""}
     </form>
   );
 };

@@ -4,11 +4,13 @@ import MainLayout from "../Layouts/MainLayout";
 import Login from "../pages/AuthPages/Login";
 import Register from "../pages/AuthPages/Register";
 import AddItem from "../pages/Dashboard/AddItem";
+import AdminHome from "../pages/Dashboard/AdminHome";
 import AllUsers from "../pages/Dashboard/AllUsers";
 import Cart from "../pages/Dashboard/Cart";
 import ManageItems from "../pages/Dashboard/ManageItems";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import UpdateItem from "../pages/Dashboard/UpdateItem";
+import UserHome from "../pages/Dashboard/UserHome";
 import Home from "../pages/Home";
 import Menu from "../pages/MenuPage";
 import Order from "../pages/Order";
@@ -52,6 +54,10 @@ export const router = createBrowserRouter([
     children: [
       //Normal User route
       {
+        path: "userHome",
+        element: <UserHome />,
+      },
+      {
         path: "cart",
         element: <Cart></Cart>,
       },
@@ -61,6 +67,14 @@ export const router = createBrowserRouter([
       },
 
       //Admin Only Route
+      {
+        path: "adminHome",
+        element: (
+          <AdminRoute>
+            <AdminHome />
+          </AdminRoute>
+        ),
+      },
       {
         path: "all-users",
         element: (
