@@ -1,4 +1,4 @@
-import { FaBook, FaCalendarCheck, FaHome, FaUsers } from "react-icons/fa";
+import { FaBook, FaHome, FaList, FaUsers } from "react-icons/fa";
 import { FaCartPlus, FaListUl } from "react-icons/fa6";
 import {
   MdEmail,
@@ -69,15 +69,20 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/dashboard/paymentHistory">
+                  <FaList /> Payment History
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/review">
                   <MdRateReview /> Add Review
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to="/dashboard/bookings">
                   <FaCalendarCheck /> My Bookings
                 </NavLink>
-              </li>
+              </li> */}
             </>
           )}
           {/* Shared NavLinks */}

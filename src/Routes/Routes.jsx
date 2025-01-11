@@ -9,6 +9,7 @@ import AllUsers from "../pages/Dashboard/AllUsers";
 import Cart from "../pages/Dashboard/Cart";
 import ManageItems from "../pages/Dashboard/ManageItems";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 import UpdateItem from "../pages/Dashboard/UpdateItem";
 import UserHome from "../pages/Dashboard/UserHome";
 import Home from "../pages/Home";
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment />,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory />,
       },
 
       //Admin Only Route
