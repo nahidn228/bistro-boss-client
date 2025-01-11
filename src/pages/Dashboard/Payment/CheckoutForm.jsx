@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import useAuth from "./../../../hooks/useAuth";
 import useAxiosSecure from "./../../../hooks/useAxiosSecure";
 import useCart from "./../../../hooks/useCart";
@@ -20,8 +21,8 @@ const CheckoutForm = () => {
       axiosSecure
         .post("/create-payment-intent", { price: totalPrice })
         .then((res) => {
-          console.log(res.data.client_secret);
-          setClientSecret(res.data.client_secret);
+          console.log(res.data.clientSecret);
+          setClientSecret(res.data.clientSecret);
         });
     }
   }, [axiosSecure, totalPrice]);
@@ -83,8 +84,16 @@ const CheckoutForm = () => {
           status: "pending",
         };
         const res = await axiosSecure.post("/payments", payment);
-        console.log('Payment saved',res.data);
+        console.log("Payment saved", res.data);
         refetch();
+        if (res.data?.paymentResult?.insertedId) {
+          Swal.fire({
+            title: "Thanks for your order ",
+            icon: "success",
+            draggable: true,
+            timer: 1500,
+          });
+        }
       }
     }
   };
@@ -114,7 +123,15 @@ const CheckoutForm = () => {
         Pay
       </button>
       {error ? <p className="text-red-500"> {error} </p> : ""}
-      {transactionId ? <p className="text-blue-500"> {transactionId} </p> : ""}
+      {transactionId ? (
+        <p>
+          {" "}
+          Your Transaction Id:{" "}
+          <span className="text-blue-500">{transactionId}</span>{" "}
+        </p>
+      ) : (
+        ""
+      )}
     </form>
   );
 };
