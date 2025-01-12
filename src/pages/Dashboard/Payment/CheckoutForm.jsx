@@ -14,6 +14,7 @@ const CheckoutForm = () => {
   const [transactionId, setTransactionId] = useState("");
   const axiosSecure = useAxiosSecure();
   const [cart, refetch] = useCart();
+  console.log(cart);
   const { user } = useAuth();
   const navigate = useNavigate();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
@@ -82,7 +83,7 @@ const CheckoutForm = () => {
           transactionId: paymentIntent.id,
           date: new Date(), //convert utc date, use moment js
           cartIds: cart.map((item) => item._id),
-          menuItemIds: cart.map((item) => item.menuId),
+          menuItemIds: cart.map((item) => item.cartId),
           status: "pending",
         };
         const res = await axiosSecure.post("/payments", payment);
